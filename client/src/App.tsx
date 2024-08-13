@@ -1,33 +1,30 @@
+import { useEffect, useState } from 'react'
 import './App.css'
-import DuckItem from './DuckItem';
+import axios from 'axios';
 
 function App() {
 
+  const [activities, setActivities] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:5069/api/activities")
+    .then(response => {
+      setActivities(response.data)
+    })
+  }, []); // [] = will execute once and once only, when dependencies change, it will call the url again
+
   return (
-   <div>
+    <div>
       <h1>EventApp</h1>
-      { ducks.map(duck => (
-        <DuckItem key={duck.name} duck={duck}/>
-      )) }
-   </div>
+      <ul>
+        {activities.map((activity: any) => (
+          <li key={activity.id}>
+            {activity.title}
+          </li>
+        ))}
+      </ul>
+    </div>
   )
-}
-
-const ducks: Duck[] = [
-  {name: "duck1", makeSound: (sound: string) => alert(sound)},
-  {name: "duck2", makeSound: (sound: string) => alert(sound)},
-]
-
-export class Duck {
-  name: string;
-
-  constructor(name: string) {
-    this.name = name;
-  }
-
-  makeSound(sound: string) {
-    alert(sound);
-  }
 }
 
 export default App
