@@ -5,7 +5,6 @@ using Persistence;
 
 namespace API.Controllers;
 
-[Route("[controller]")]
 public class ActivitiesController : BaseApiController
 {
     private readonly ILogger<ActivitiesController> _logger;
