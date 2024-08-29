@@ -13,6 +13,6 @@ public class BaseApiController : ControllerBase
     // then stores it on _mediator, and after that, it will return as the Mediator function output
     // ??= null coalescing assignment stores it before it is returned
     // ?? null coalescing only returns without storing it in the _mediator field.
-    
-    protected IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetService<IMediator>();  
+
+    protected IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetService<IMediator>();
 }

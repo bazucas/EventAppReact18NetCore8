@@ -10,18 +10,18 @@ public class ActivitiesController : BaseApiController
     private readonly ILogger<ActivitiesController> _logger;
 
     public ActivitiesController(ILogger<ActivitiesController> logger)
-    { 
+    {
         _logger = logger;
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<Activity>>> GetActivities() 
+    public async Task<ActionResult<List<Activity>>> GetActivities()
     {
         return await Mediator.Send(new List.Query());
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Activity>> GetActivity(Guid id) 
+    public ActionResult<Activity> GetActivity(Guid id)
     {
         return Ok();
     }

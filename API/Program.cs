@@ -1,7 +1,4 @@
-using API.Extensions;
 using Application.Activities;
-using Domain;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
@@ -20,8 +17,10 @@ builder.Services.AddDbContext<DataContext>(opt =>
 
 //builder.Services.AddIdentityServices(builder.Configuration);
 
-builder.Services.AddCors(opt => {
-    opt.AddPolicy("CorsPolicy", policy => {
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("CorsPolicy", policy =>
+    {
         policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
     });
 });
