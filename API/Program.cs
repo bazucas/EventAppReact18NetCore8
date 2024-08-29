@@ -1,4 +1,5 @@
 using API.Extensions;
+using Application.Activities;
 using Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,8 @@ builder.Services.AddCors(opt => {
         policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
     });
 });
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(List.Handler).Assembly));
 
 var app = builder.Build();
 

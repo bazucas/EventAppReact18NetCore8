@@ -1,30 +1,28 @@
+using Application.Activities;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Persistence;
+
 
 namespace API.Controllers;
 
 public class ActivitiesController : BaseApiController
 {
     private readonly ILogger<ActivitiesController> _logger;
-    private readonly DataContext _context;
 
-    public ActivitiesController(ILogger<ActivitiesController> logger, DataContext context)
-    {
-        _context = context;
+    public ActivitiesController(ILogger<ActivitiesController> logger)
+    { 
         _logger = logger;
     }
 
     [HttpGet]
     public async Task<ActionResult<List<Activity>>> GetActivities() 
     {
-        return await _context.Activities.ToListAsync();
+        return await Mediator.Send(new List.Query());
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<Activity>> GetActivity(Guid id) 
     {
-        return await _context.Activities.FindAsync(id);
+        return Ok();
     }
 }
